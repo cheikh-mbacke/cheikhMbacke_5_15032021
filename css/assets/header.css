@@ -1,0 +1,63 @@
+.navbar-custimize{
+    background-color: #f5eaee;
+}
+.form-search{
+    position: relative;
+}
+.form-search-input{
+    border: thin;
+    padding-left: 6px;
+    border-radius: 2px;
+}
+.form-search-input:focus{
+    outline: none;
+}
+.form-search-icon{
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    opacity: 0.5;
+}
+ .navbar-toggler-custimize{
+    background-color: #dbbdc8; 
+}
+.nav-rubric-link{
+    color: #000 !important;
+
+}
+.nav-rubric-icons{
+    color: #8b6472;
+}
+@media screen and (min-width: 992px){
+    .nav-rubric-icon-device{
+        margin-left: 14px;
+    }
+    .nav-item-custimize{
+        margin-bottom: 0 !important;
+    }
+
+}
+
+.container-contact{
+    background-color: #f3dbe4; 
+}
+.contact-link{
+    text-decoration: none;
+    color: #000;
+}
+.contact-link:hover{
+    color: #8b6472;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

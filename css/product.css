@@ -1,0 +1,59 @@
+.presentation-produit{
+    background-color: #f5eaee;
+}
+.btn-shoping{
+    color: #8b6472;
+}
+
+.btn-commander{
+    color: white;
+    background-color: #8b6472;
+}
+.btn-commander:hover{
+    color: white;
+    background-color: #72525e;
+}
+.basket-header{
+    width: 783px;
+}
+.single-product{
+    width: 783px;
+}
+.form-choose{
+    width: 3em;
+}
+.define-qte{
+    width: 10em;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.livraison{
+    width: 783px;
+    margin: auto;
+    background-color: #f3dbe4;
+}
+.formulaire{
+    width: 783px;
+    margin: auto; 
+}
+.btn-coupon{
+    background-color: #8b6472; 
+}
+.btn-submit{
+    background-color: #8b6472; 
+    color: white;
+}
+.btn-submit:hover{
+    color: white;
+    background-color: #72525e;
+}
+.productImg{
+    width: 10em;
+}
+#panierVide{
+    display: none;
+}
+#form{
+    display: none;
+}
