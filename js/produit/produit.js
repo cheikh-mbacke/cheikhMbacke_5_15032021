@@ -1,4 +1,4 @@
-//retrieve the product id sent by index.html
+// //retrieve the product id sent by index.html
 const params = new URLSearchParams(window.location.search);
 let idProduct = params.get('idProduct');
 

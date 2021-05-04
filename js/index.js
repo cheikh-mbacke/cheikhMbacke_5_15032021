@@ -1,6 +1,5 @@
-
 //this function is used to create the html code of a product whose data is sent to it
-const cadrProduct = (data) =>{
+const createProduct = (data) =>{
 
     //divide the value of the price by 100 because it is too many
     data.price = data.price / 100;
@@ -19,7 +18,6 @@ const cadrProduct = (data) =>{
                     <a href="produit.html?idProduct=${data._id}" class="btn btn-basket w-100 ">Acheter</a>
                     </div>
                 </div>`
-
 }
 
 //product recovery from the API
@@ -29,7 +27,7 @@ fetch("http://localhost:3000/api/cameras")
     
     for (let value of response) {
         
-        let product = cadrProduct(value);
+        let product = createProduct(value);
 
         document.getElementById("productsContainer").innerHTML += product;
         
@@ -37,5 +35,4 @@ fetch("http://localhost:3000/api/cameras")
 
 })
 .catch(error => alert("Erreur : " + error));
-
 

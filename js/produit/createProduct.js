@@ -72,10 +72,5 @@ const createProduct = (data) =>{
     firstDivElt.appendChild(secondDivElt);
 
     //return the product code after all the settings
-
     return firstDivElt
-
-    // //Insérer le code html du produit envoyé
-    // document.getElementById("productsContainer").appendChild(firstDivElt);
-
 }

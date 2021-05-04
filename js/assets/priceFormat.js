@@ -1,4 +1,3 @@
-
 const priceFormat = (price) =>{
 
     //Configure formatting

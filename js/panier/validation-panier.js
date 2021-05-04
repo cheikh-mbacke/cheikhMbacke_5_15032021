@@ -14,22 +14,22 @@ form.addEventListener("submit", (e) =>{
     e.preventDefault();
 
 
-    fetch("http://localhost:3000/api/teddies/order", {
+    fetch(" https://oc-devweb-p5-api.herokuapp.com", {
       
     // Adding method type
     method: "POST",
+    // Adding headers to the request
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    },
       
     // Adding body or contents to send
     body: JSON.stringify({
         name: "cheikh",
         adresse: "10 rue Louis Blériot",
-        produit: [1, 2, 2]
-    }),
+})
       
-    // Adding headers to the request
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    }
 })
   
 // Converting to JSON

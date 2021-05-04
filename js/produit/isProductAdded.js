@@ -12,7 +12,7 @@ const isProductAdded = (isAdded) =>{
         bgColor= '	#FFA500';
         message = 'Cet article est déjà ajouté au panier !';
     }
-    else
+    else if(isAdded === false)
     {
         bgColor= '#90EE90';
         message = 'Cet article a été ajouté au panier !';

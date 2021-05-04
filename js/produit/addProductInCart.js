@@ -16,20 +16,17 @@ const productId_Exists = (id) =>{
     
 }
 
-
 /*
 - this function allows you to add a product to the basket
-- productProductData : matchs to the data of the product, its name, id, price etc.
+- productProductData : matches to the data of the product, its name, id, price etc.
 - idElem : this is the id of the html element containing the product
 */
-
 const addProductInCart = (productData, idElem) =>{
 
     //We check if the product has not already been added to the basket
 
     //The case where the product is not added to the basket
     let responseValue = productId_Exists(productData._id);
-    console.log(responseValue);
     if (!responseValue || responseValue === null)
     {
         
