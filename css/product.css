@@ -51,9 +51,10 @@
 .productImg{
     width: 10em;
 }
-#panierVide{
-    display: none;
-}
-#form{
+/* #panierVide{
+  
+} */
+
+#form, #btnConfirmer, #prixTotalContainer, #livraison{
     display: none;
 }

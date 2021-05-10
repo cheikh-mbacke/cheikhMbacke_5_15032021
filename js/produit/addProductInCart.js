@@ -1,79 +1,65 @@
-//this function checks if the id of a product already exists or not in the sessionStorage
-const productId_Exists = (id) =>{
+/*
+- cette fonction permet d'ajouter un produit au panier
+- productProductData: correspond aux données du produit, son nom, son identifiant, son prix, etc.
+- idElem: c'est l'identifiant de l'élément html contenant le produit
+*/
 
-    let response = null;
+const addProductInCart = (productData, idElem) =>{
 
-    if(sessionStorage.getItem('products') !== null)
+    let arrayCart = [];
+    let isAdded = false;
+
+    //Ajouter un produit si le panier est vide
+    if (sessionStorage.getItem('products') === null)
     {
-        let productList = sessionStorage.getItem('products').replace("undefined", "");
-        productList = productList.split(' ');
-        productList = productList.filter(x => x !== "");
-
-        response = productList.includes(id);
+        arrayCart = [{value: document.getElementById(idElem).value, id: productData._id}]
+        sessionStorage.setItem('products', JSON.stringify(arrayCart));
+        sessionStorage.setItem('prixTotal', productData.price);
     }
 
-    return response;
+    //Ajouter un produit si le panier n'est pas vide
+    else
+    {   
+        arrayCart = JSON.parse(sessionStorage.getItem('products'));
+
+        //Vérifier si le prdouit est déjà ajouté au panier ou pas
+        for(let product of arrayCart)
+        {
+            if(product.id === productData._id){
+                isAdded = true;
+            }
+        }
+
+        //ajouter le produit au panier s'il ne l'est pas
+        if(!isAdded)
+        {
+            arrayCart.push(({
+                value: document.getElementById(idElem).value,
+                id: productData._id
+                }));
+                sessionStorage.setItem('products', JSON.stringify(arrayCart));
+
+            let prixActu =  parseFloat(sessionStorage.getItem('prixTotal')) + productData.price;
+            sessionStorage.setItem('prixTotal', prixActu);
+
+        }
+
+    }
+
+    //Aficher un message de notification en cas de succès ou de l'echec de l'ajout au panier
+    displayMessage(isAdded);
     
 }
 
-/*
-- this function allows you to add a product to the basket
-- productProductData : matches to the data of the product, its name, id, price etc.
-- idElem : this is the id of the html element containing the product
-*/
-const addProductInCart = (productData, idElem) =>{
+const displayMessage = (isAdded) =>{
 
-    //We check if the product has not already been added to the basket
-
-    //The case where the product is not added to the basket
-    let responseValue = productId_Exists(productData._id);
-    if (!responseValue || responseValue === null)
+    modalElt = isProductAdded(isAdded);
+    if(document.getElementById('modal') !== null)
     {
-        
-        isAdded = false;
-
-        //I store the product id in sessionStorage
-        sessionStorage.products += `${productData._id} `;
-
-        //I also store in sessionStorage the caliber chosen by the user
-        sessionStorage.calibre += `{"value": \"${document.getElementById(idElem).value}\", "id": \"${productData._id}\"}` + ";";
-
-        //Si la session "prixTotal" a déjà été créée, je la met à jour en y additionnant le prix du produit en traitement
-        if(sessionStorage.getItem('prixTotal') !== null){
-            let prixActu =  parseFloat(sessionStorage.getItem('prixTotal')) + productData.price;
-            sessionStorage.setItem('prixTotal', prixActu);
-        }
-        //otherwise, I initialize a session variable to store the total price of products added by the user to the cart
-        else{
-            sessionStorage.setItem('prixTotal', productData.price);
-        }
-
-        //it returns an html element which contains a message specifying that the product is added now
-        modalElt = isProductAdded(isAdded);
-
-        //I display the returned message in the page
-        document.getElementById("productsContainer").insertAdjacentElement('afterbegin', modalElt);
-    
+        document.getElementById("productsContainer").replaceChild(modalElt, document.getElementById('modal'))
     }
-
-    //the case where the product is already added to the basket
     else
     {
-        isAdded = true;
-
-        //it returns an html element which contains a message specifying that the product has been already added
-        modalElt = isProductAdded(isAdded);
-        
-        /*If a notification message is already displayed on the page and the user still clicks on "add product",
-        I replace this message with the new one generated*/
-        if(document.getElementById('modal') !== null)
-        {
-            document.getElementById("productsContainer").replaceChild(modalElt, document.getElementById('modal'))
-        }
-        //otherwise I directly display the message
-        else
-        {
-            document.getElementById("productsContainer").insertAdjacentElement('afterbegin', modalElt);
-        }
+        document.getElementById("productsContainer").insertAdjacentElement('afterbegin', modalElt);
     }
 }

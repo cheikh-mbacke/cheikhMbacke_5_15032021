@@ -1,16 +1,13 @@
-//this function allows you to retrieve the caliber corresponding to an id sent to it
+//cette fonction permet de récupérer le calibre (lentille) correspondant à un identifiant qui lui est envoyé
 const getCalibre = (idProduct) =>{
 
-    let calibreValue = null;
+    let calibreValue = '';
     
-    let calibreArray = sessionStorage.getItem('calibre').replace("undefined", "");
-    calibreArray = calibreArray.split(';');
-    calibreArray.pop();
+    let arrayCart = JSON.parse(sessionStorage.getItem('products'));
 
-    for (let calibreObject of calibreArray){
-        calibreObject = JSON.parse(calibreObject);
-        if(calibreObject.id === idProduct){
-            calibreValue = calibreObject.value;
+    for (let product of arrayCart){
+        if(product.id === idProduct){
+            calibreValue = product.value;
         }
     }   
 

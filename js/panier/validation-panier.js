@@ -1,47 +1,42 @@
-// Afficher le formulaire
-document.getElementById("Confimedbtn").addEventListener("click", () =>{
-
-    document.getElementById("form").style.display = "block";
-
-});
-
-
-
+//Envoi des données du formulaire de commande au serveur
 let form = document.getElementById("form");
 
 form.addEventListener("submit", (e) =>{
 
     e.preventDefault();
 
+    let arrayCart = JSON.parse(sessionStorage.getItem('products'));
 
-    fetch(" https://oc-devweb-p5-api.herokuapp.com", {
-      
-    // Adding method type
+    let idProducts = [];
+    
+    for(let product of arrayCart){
+        idProducts.push(product.id);
+    }
+    
+    fetch("http://localhost:3000/api/cameras/order", {
+
     method: "POST",
-    // Adding headers to the request
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json; charset=UTF-8"
     },
-      
-    // Adding body or contents to send
     body: JSON.stringify({
-        name: "cheikh",
-        adresse: "10 rue Louis Blériot",
+        contact: {
+            firstName: form.elements.firstName.value,
+            lastName: form.elements.lastName.value,
+            address: form.elements.address.value,
+            city: form.elements.city.value,
+            email: form.elements.email.value
+
+        },
+        products: idProducts
 })
       
 })
-  
-// Converting to JSON
 .then(response => response.json())
   
-// Displaying results to console
-.then(json => console.log(json));
+.then(response => document.location.href=`confirmation.html?idCommande=${response.orderId}&pseudo=${form.elements.firstName.value}`);
+
+
 })
-
-
-
-
-
-
 

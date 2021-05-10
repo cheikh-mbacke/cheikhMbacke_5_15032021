@@ -1,10 +1,10 @@
-//The function is used to notify the user if a product is already added or not
+//La fonction est utilisée pour créer le code html du message à envoyer à l'utilisateur si un produit est ajouté au panier ou déjà ajouté
 const isProductAdded = (isAdded) =>{
 
-    //the background color of the notification
+    //la couleur d'arrière-plan de la notification
     let bgColor = '';
 
-    //the message to return according to the parameter => isAdded
+    //le message à renvoyer selon le paramètre => isAdded
     let message = '';
 
     if(isAdded === true)
@@ -18,7 +18,7 @@ const isProductAdded = (isAdded) =>{
         message = 'Cet article a été ajouté au panier !';
     }
 
-    //The html code for the notification
+    //Le code html de la notification
     let divElt = document.createElement('div');
     let pElt = document.createElement('p');
     pElt.textContent = message;

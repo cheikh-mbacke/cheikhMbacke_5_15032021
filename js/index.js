@@ -1,10 +1,10 @@
-//this function is used to create the html code of a product whose data is sent to it
+//cette fonction permet de créer le code html d'un produit dont les données lui sont envoyées
 const createProduct = (data) =>{
 
-    //divide the value of the price by 100 because it is too many
+    //divisez la valeur du prix par 100 car c'est trop
     data.price = data.price / 100;
 
-    //format the price
+    //formater le prix
     let price = priceFormat(data.price);
 
     return `<div class="card card-produit" id="${data._id}">
@@ -20,7 +20,7 @@ const createProduct = (data) =>{
                 </div>`
 }
 
-//product recovery from the API
+//récupération de produit à partir de l'API
 fetch("http://localhost:3000/api/cameras")
 .then(response => response.json())
 .then(response => {

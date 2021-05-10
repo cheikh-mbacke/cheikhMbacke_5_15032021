@@ -1,13 +1,13 @@
-//this function is used to create the html code of a product whose data is sent to it
+//cette fonction permet de créer le code html d'un produit dont les données lui sont envoyées
 const createProduct = (data) =>{
 
-    //divide the value of the price by 100 because it is too many
+    //divisez la valeur du prix par 100 car c'est trop
     data.price = data.price / 100;
 
-    //format the price
+    //formater le prix
     let price = priceFormat(data.price);
 
-    //creation of the html code displaying the product
+    //création du code html affichant le produit
     let firstDivElt = document.createElement('div');
     let secondDivElt= document.createElement('div');
     let imgElt = document.createElement('img');
@@ -39,7 +39,7 @@ const createProduct = (data) =>{
     let idSelect = data._id + "xf34";
     selectElt.setAttribute("id", idSelect);
 
-     //Dynamically generate the available calibers
+     //Générer dynamiquement les lentilles disponibles
      data.lenses.map(elt => {
 
         let optionElt = document.createElement('option');
@@ -61,7 +61,7 @@ const createProduct = (data) =>{
      aElt.setAttribute("class", "btn btn-basket w-100");
      aElt.textContent = "Ajouter au panier";
 
-     //the event that manages the addition to the cart
+     //l'événement qui gère l'ajout au panier
      aElt.addEventListener("click", () => {
        
         addProductInCart(data, idSelect);
@@ -71,6 +71,6 @@ const createProduct = (data) =>{
 
     firstDivElt.appendChild(secondDivElt);
 
-    //return the product code after all the settings
+    //renvoyer le code produit après tous les réglages
     return firstDivElt
 }

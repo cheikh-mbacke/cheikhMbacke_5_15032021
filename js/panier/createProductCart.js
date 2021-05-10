@@ -1,26 +1,28 @@
 const createProductCart = (data) => {
 
-    //divide the value of the price by 100 because it is too many
+    //divisez la valeur du prix par 100 car c'est trop
     data.price = data.price / 100;
 
-    //format the price
+    //formater le prix
     let price = priceFormat(data.price);
 
-    //creation of the html code displaying products in shoping cart
+    //création du code html affichant les produits dans le panier
     let divContainer = document.createElement('div');
     let divItem_1 = document.createElement('div');
     let divItem_2 = document.createElement('div');
     let divIconDelete = document.createElement('div');
     let divContainsFom = document.createElement('div');
     let divContainsPrice = document.createElement('div');
+    
 
-    divContainer.setAttribute("class", "d-flex justify-content-between m-auto bg-light single-product mb-3");
+
+    divContainer.setAttribute("class", "d-flex justify-content-between m-auto bg-light single-product mb-3 divContainer");
     divContainer.setAttribute("id", data._id)
 
     let imgElt = document.createElement('img');
     imgElt.setAttribute("class", "productImg");
     imgElt.setAttribute("src", data.imageUrl);
-    divItem_1.setAttribute("class", "d-flex");
+    divItem_1.setAttribute("class", "d-flex divItem_1");
     divItem_1.appendChild(imgElt);
 
     let pElt = document.createElement('p');
@@ -38,36 +40,21 @@ const createProductCart = (data) => {
     divIconDelete.setAttribute("class", "align-self-end cursor-pointer");
     divIconDelete.addEventListener('click', (e) =>{
 
-    //Delete the product you clicked on
+    //Supprimer le produit sur lequel l'utilisateur a cliqué
     let dataValue = document.getElementById(data.name + "053kx" + data._id).dataset.element;
-    console.log(document.getElementById(data.name + "053kx" + data._id).dataset.element);
-    deleteProduct(data, dataValue);
-
-    //Then check if there are still products in the page to personalize the display in case you don't
-    if (document.getElementsByClassName('single-product').length === 0)
-    {
-
-        for(let element of document.getElementsByClassName("panierRempli")){
-            document.getElementById('finalisation').removeChild(element);
-        }
-        
-        document.getElementById('panierVide').style.display = "block";
-        sessionStorage.removeItem('calibre');
-        sessionStorage.removeItem('products');
-    }    
-    
+        deleteProduct(data, dataValue);   
     });
 
-    //Creation of the "delete" icon
+    //Création de l'icône "supprimer"
     let deleteIcone = document.createElement('i');
     deleteIcone.setAttribute("class", "far fa-trash-alt");
     divIconDelete.appendChild(deleteIcone);
     divItem_2.appendChild(divIconDelete);
 
-    //Creating the form element and its content
+    //Créer l'élément de formulaire et son contenu
     let formElt = document.createElement('form');
 
-    //This element allows to increase or decrease the quantity of a product
+    //Cet élément permet d'augmenter ou de diminuer la quantité d'un produit
     let adjustQuantity = document.createElement('input');
     adjustQuantity.style.width = '3em';
     adjustQuantity.setAttribute("type", "number");
@@ -77,7 +64,7 @@ const createProductCart = (data) => {
     adjustQuantity.setAttribute("value", 1);
     adjustQuantity.setAttribute("data-element", 1)
 
-    //Change the price of the product based on the number of items purchased
+    //Modifier le prix du produit en fonction du nombre d'articles achetés
     adjustQuantity.addEventListener('change', (e) =>{
         updatePrice(data, e.target.value, e.target.dataset.element)
         e.target.dataset.element = e.target.value
@@ -94,10 +81,11 @@ const createProductCart = (data) => {
     divContainsFom.setAttribute("class", "d-flex justify-content-between define-qte");
     divContainsFom.appendChild(formElt);
     divContainsFom.appendChild(divContainsPrice);
-    divItem_2.setAttribute("class", "d-flex flex-column justify-content-between p-3");
+    divItem_2.setAttribute("class", "d-flex flex-column justify-content-between p-3 divItem_2");
     divItem_2.appendChild(divContainsFom);
 
     divContainer.appendChild(divItem_2);
     document.getElementById('products').insertAdjacentElement('afterbegin', divContainer);
 
+   
 }

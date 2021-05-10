@@ -1,9 +1,9 @@
 const priceFormat = (price) =>{
 
-    //Configure formatting
+    //Configurer le formatage
     let config = new Intl.NumberFormat("fr-FR", {style: "currency", currency: "EUR", currencyDisplay: "symbol", maximumFractionDigits: 2});
 
-    //Format the price
+    //Formater le prix
     let formatedPrice = config.format(price);
     
     return formatedPrice;
