@@ -10,4 +10,4 @@ document.getElementById('numeroCommande').textContent = idCommande;
 document.getElementById('pseudo').textContent ="merci " +pseudo+ ",";
 
 //Vider le panier
-sessionStorage.clear()
+sessionStorage.clear();
