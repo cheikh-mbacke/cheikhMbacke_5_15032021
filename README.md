@@ -14,5 +14,5 @@ renvoyées au back-end. Par exemple, pas de texte dans les champs date ;<br/>
 commande, et indiquant le prix total et l'identifiant de commande envoyé
 par le serveur.<br/>
 
-2. Mise en route
+2. Mise en route<br/>
 Pour exécuter le projet, il faudra le cloner ou télécharger le code source, puis ouvrir le fichier index.html via votre naviagteur
